@@ -25,7 +25,7 @@ export function ProjectsSection() {
         >
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/20 mb-3">
-              <span>03. CASE STUDIES & CODE</span>
+              <span>04. CASE STUDIES & CODE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
               Featured Agentic Systems

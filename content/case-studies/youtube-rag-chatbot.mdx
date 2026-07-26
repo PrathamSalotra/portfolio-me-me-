@@ -1,0 +1,69 @@
+---
+title: "YouTube Video RAG Assistant"
+description: "An application built on Retrieval-Augmented Generation (RAG) to ask any natural language question related to a YouTube video using Llama-3.1-8B-Instruct and bge-small-en-v1.5 embeddings."
+date: "2026-05-15"
+tags: ["RAG", "Llama-3.1", "bge-small-en", "LangChain", "Python", "Transcript API"]
+repoUrl: "https://github.com/PrathamSalotra"
+architectureImage: "/diagrams/youtube-rag-chatbot.png"
+---
+
+## Problem / Goal
+
+Long-form YouTube lectures, technical tutorials, and documentaries contain dense information that is difficult to search sequentially. Standard keyword search on video captions fails to capture semantic meaning or answer synthesized questions across multiple timestamps.
+
+The goal of this project was to architect a high-precision **Retrieval-Augmented Generation (RAG) assistant** capable of ingesting raw YouTube video URLs, extracting transcripts on the fly, and answering complex context-aware questions with citations.
+
+---
+
+## Architecture Overview
+
+The system pipeline connects transcript extraction with semantic vector retrieval and instruction-tuned generation using **Llama-3.1-8B-Instruct**.
+
+![YouTube Video RAG Assistant Architecture](/diagrams/youtube-rag-chatbot.png)
+
+### Ingestion & Retrieval Workflow
+
+1. **Transcript Extraction**: Ingests video IDs via `youtube-transcript-api` and normalizes time-stamped caption tracks.
+2. **Semantic Window Chunking**: Splits transcripts into overlapping semantic chunks of **500 tokens**, preserving natural conversational context boundaries.
+3. **Vector Embeddings**: Encodes chunks using `bge-small-en-v1.5` for high cosine similarity ranking in the vector store.
+4. **Context-Aware Generation**: Retrieves the top-k most relevant video segments and prompts **Llama-3.1-8B-Instruct** to generate concise, factual answers without hallucination.
+
+---
+
+## Tech Stack Used
+
+- **LLM Engine**: Llama-3.1-8B-Instruct for instruction following and reasoning
+- **Embedding Model**: `bge-small-en-v1.5` for dense vector representations
+- **Transcript Ingestion**: Python `youtube-transcript-api`
+- **Framework & Routing**: LangChain, Python FastAPI backend
+- **UI / Client**: Responsive React frontend with real-time streaming tokens
+
+---
+
+## What Broke / Failure Modes Encountered
+
+<FailureModeAlert title="Transcript Rate Limiting & Semantic Chunk Boundary Truncation" severity="high">
+During initial testing with videos over 2 hours long, simple character-count chunking sliced sentences in half, causing the embedding model (`bge-small-en-v1.5`) to misinterpret incomplete technical definitions. Furthermore, rapid video switches triggered YouTube IP rate-limiting on transcript fetches.
+</FailureModeAlert>
+
+### Additional Failure Modes
+- **Out-of-Context Hallucinations**: When users asked general trivia unrelated to the video content, early prompt iterations allowed the LLM to rely on parametric memory rather than strictly adhering to retrieved chunks.
+- **Latency Spikes**: Synchronous transcript downloading and embedding for 3-hour podcasts blocked the request thread for over 12 seconds.
+
+---
+
+## How It Was Fixed / Lessons Learned
+
+1. **Token-Aware Semantic Chunking (500 tokens)**:
+   - Migrated from raw character slicing to recursive semantic windowing (`chunk_size=500`, `chunk_overlap=50`), ensuring every embedding window contains full grammatical thoughts.
+2. **Strict Grounding System Prompt**:
+   - Enforced a strict refusal policy in Llama-3.1-8B-Instruct: *"If the answer is not contained within the retrieved transcript segments, state explicitly that the video does not mention this topic."*
+3. **Asynchronous Transcript Caching**:
+   - Implemented an LRU cache layer and asynchronous background workers for transcript retrieval, reducing repeat query response times to under 180ms.
+
+---
+
+## Links & Verification
+
+- **GitHub Profile & Code**: [github.com/PrathamSalotra](https://github.com/PrathamSalotra)
+- **LinkedIn**: [linkedin.com/in/PrathamSalotra](https://linkedin.com/in/PrathamSalotra)

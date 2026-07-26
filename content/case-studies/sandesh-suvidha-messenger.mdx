@@ -1,0 +1,69 @@
+---
+title: "Sandesh Suvidha — Real-Time 1-to-1 Messenger"
+description: "A secure real-time messaging application engineered with Socket.io, JWT & Bcrypt authentication, and an optimized MongoDB schema storing 7,000+ chats."
+date: "2026-01-10"
+tags: ["Socket.io", "React", "Zustand", "Tailwind CSS", "MongoDB", "Node.js"]
+repoUrl: "https://github.com/PrathamSalotra"
+architectureImage: "/diagrams/sandesh-suvidha-messenger.png"
+---
+
+## Problem / Goal
+
+Building low-latency, real-time messaging platforms requires handling concurrent bi-directional WebSocket connections without sacrificing persistence or database retrieval speed. Poor schema design in chat applications leads to slow initial load times when querying extensive message histories.
+
+The goal of this project was to architect **Sandesh Suvidha**, a production-grade 1-to-1 chat platform with real-time Socket.io delivery, end-to-end authentication, and an indexed MongoDB schema that optimizes message retrieval speed by 35%.
+
+---
+
+## Architecture Overview
+
+The application utilizes a decoupled real-time WebSocket layer combined with RESTful Node.js/Express APIs for user authentication and session bootstrapping.
+
+![Sandesh Suvidha Real-Time Messenger Architecture](/diagrams/sandesh-suvidha-messenger.png)
+
+### Real-Time Chat Lifecycle
+
+1. **Secure Authentication**: Users authenticate via REST endpoints secured with **Bcrypt** password hashing and stateless **JSON Web Tokens (JWT)**.
+2. **Socket.io WebSocket Gateway**: Persistent bi-directional channels handle instant message broadcasting and typing notifications.
+3. **Optimized MongoDB Persistence**: Messages are stored in a compound-indexed MongoDB collection designed for fast paginated query lookups.
+4. **Responsive UI**: A modern **React + Tailwind CSS** client managed by **Zustand** global state ensures zero-jitter chat window rendering.
+
+---
+
+## Tech Stack Used
+
+- **Real-Time Communication**: Socket.io WebSocket servers & client hooks
+- **Frontend UI & State**: React, Tailwind CSS, Zustand, Material UI
+- **Backend API Server**: Node.js, Express.js
+- **Database & Storage**: MongoDB with compound indexing (7,000+ messages)
+- **Security & Auth**: Bcrypt password hashing, JWT bearer tokens
+
+---
+
+## What Broke / Failure Modes Encountered
+
+<FailureModeAlert title="WebSocket Reconnection Duplication & MongoDB Cursor Saturation" severity="high">
+During network fluctuation simulations, temporary WebSocket disconnections caused clients to re-emit pending messages upon reconnection, resulting in duplicate chat records in MongoDB. Additionally, fetching unindexed message histories of 5,000+ records caused database response times to exceed 800ms.
+</FailureModeAlert>
+
+### Additional Failure Modes
+- **Zustand State Race Conditions**: Concurrent message arrivals out of order caused UI scroll-to-bottom glitches in the chat viewport.
+- **Memory Leaks in Socket Event Listeners**: Failing to clean up socket event listeners in React `useEffect` hooks caused memory consumption to spike during extended chat sessions.
+
+---
+
+## How It Was Fixed / Lessons Learned
+
+1. **Compound Indexing & Cursor Pagination**:
+   - Engineered compound indexes (`{ conversationId: 1, createdAt: -1 }`) in MongoDB and implemented cursor-based pagination, boosting historical chat retrieval speed by **35%**.
+2. **Client-Side Message Deduplication UUIDs**:
+   - Attached unique client-generated UUIDs (`clientMsgId`) to outgoing Socket.io packets, enabling the backend to idempotently reject duplicate deliveries during reconnections.
+3. **Strict React Hook Socket Cleanup**:
+   - Standardized lifecycle cleanup in all custom Socket.io hooks (`socket.off(event)` on unmount), eliminating browser memory leaks and UI re-render jitter.
+
+---
+
+## Links & Verification
+
+- **GitHub Profile & Code**: [github.com/PrathamSalotra](https://github.com/PrathamSalotra)
+- **LinkedIn**: [linkedin.com/in/PrathamSalotra](https://linkedin.com/in/PrathamSalotra)

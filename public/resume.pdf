@@ -1,43 +1,48 @@
-%PDF-1.4
-1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
-endobj
-2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
-endobj
-3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
-endobj
-4 0 obj
-<< /Length 200 >>
-stream
-BT
-/F1 16 Tf
-72 700 Td
-(Alex Mercer - AI Systems Engineer) Tj
-/F1 12 Tf
-0 -24 Td
-(Agentic AI Architecture | LangGraph | Multi-Agent Systems) Tj
-0 -24 Td
-(Email: alex.mercer.agentic@example.com) Tj
-0 -36 Td
-(NOTE: This is a placeholder resume PDF generated for testing.) Tj
-ET
-endstream
-endobj
-5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
-endobj
-xref
-0 6
-0000000000 65535 f 
-0000000009 00000 n 
-0000000054 00000 n 
-0000000109 00000 n 
-0000000228 00000 n 
-0000000481 00000 n 
-trailer
-<< /Size 6 /Root 1 0 R >>
-startxref
-548
-%%EOF
+PRATHAM SALOTRA
+LeetCode: Heliux | prathamsalotra@proton.me | +91-9682507935 | LinkedIn: PrathamSalotra | GitHub: PrathamSalotra
+
+EDUCATION
+Graphic Era Institute of Technology (Dehradun, Uttarakhand)
+B.Tech. in Computer Science — Expected Graduation: July 2026
+- Concentrations: Retrieval-Augmented Generation and Applied Software Engineering Principles
+- GPA: 7.8/10.0, Dean's List
+- Coursework: Data Structures & Algorithms, Objects & Design, Generative AI, Artificial Intelligence, OOP, SDLC, Operating Systems, DBMS, Computer Networks Basics, MERN Stack Web Development, Agentic AI
+
+EXPERIENCE
+UniConverge Technologies Pvt. Ltd. (Noida, Uttar Pradesh)
+Full-Stack Development Engineering Intern — February 2026 – May 2026
+- Built RESTful APIs and integrated them into the backend, reducing data-processing time by 250ms.
+- Implemented a full course selector with 12 courses using Node.js, Cloudinary, MySQL, and Lucid ORM.
+- Provisioned AWS (S3, Lambda) for scripting and developing the backend and database components.
+
+Graphic Era (Deemed to be) University (Dehradun, Uttarakhand)
+Research Assistant — Aug 2025 – April 2026
+- Applied image detection models like YOLOv8 NANO and MediaPipe Face Mesh, reducing delay to under 100ms.
+- Developed a Streamlit-based dashboard to visualize real-time YOLO and OpenCV outputs including gaze estimation, face detection, and single- and multi-object detection.
+- Implemented Python Flask-to-FastAPI routing for detection triggers, achieving latency under 250ms.
+
+PROJECTS
+Sandesh Suvidha Messenger | Team Lead (Jun 2025 – Dec 2026)
+- Developed a real-time messenger for 1-to-1 conversation using Socket.io, with authentication via JWT and Bcrypt.
+- Integrated MongoDB to store 7,000+ chat messages, improving chat retrieval and load speed by 35%.
+- Designed a fully responsive UI of the whole chat application using Tailwind CSS, Zustand, React, and Material UI.
+
+YouTube ChatBot | Team Lead (May 2026 – Present)
+- Established an application built on RAG to ask any question related to a YouTube video.
+- Used Llama-3.1-8B-Instruct and bge-small-en-v1.5 for natural language understanding and context-aware generation.
+- Extracted YouTube transcripts via the youtube-transcript-api, then split the data into semantic chunks of 500 tokens.
+
+AI-Powered Proctoring System | Team Lead (Jan 2026 – Mar 2026)
+- Built an AI-powered online proctoring system that captures real-time webcam streams and detects examination violations using computer vision, enabling continuous monitoring and incident flagging.
+- Deployed pretrained models using Flask and FastAPI for unified incident-and-model routing through a single API layer.
+- Handled 5 violation categories using 30 frames per second from the webcam and flagged incidents on the frontend.
+
+CERTIFICATION AND LEADERSHIP
+- Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate (Aug 2025 – Aug 2027)
+- Walmart USA Advanced Software Engineering Virtual Experience (Jul 2026)
+- Graphic Era Institute of Technology Project and Research Leader (Aug 2025 – Apr 2026)
+
+SKILLS
+- Programming: Java, Python, JavaScript, HTML5/CSS3, C, C++
+- Tools: IntelliJ, PyCharm, Eclipse, VSCode, AWS, Jupyter Notebooks, Git, Docker, Microservices, HuggingFace, Postman, LangChain, LangGraph, LangSmith, Jest
+- Frameworks & Libraries: TailwindCSS, Node.js, React.js, Express.js, Bootstrap, Spring Boot, Redis, MySQL, MongoDB

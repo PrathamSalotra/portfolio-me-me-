@@ -1,8 +1,8 @@
-# Personal AI/ML Developer Portfolio
+# Pratham Salotra — AI Systems & Full-Stack Engineer Portfolio
 
-A technically credible, resume-style developer portfolio website designed to showcase **Agentic AI systems, LangGraph/LangChain orchestration, multi-agent pipelines, and production LLM engineering**. 
+A technically credible, resume-style developer portfolio website designed to showcase **Retrieval-Augmented Generation (RAG) pipelines, Real-Time Computer Vision systems, Full-Stack Distributed Architectures, and LangGraph Multi-Agent Orchestration**.
 
-Built with **Next.js 15+ App Router**, **TypeScript (Strict Mode)**, **Tailwind CSS**, **shadcn/ui**, **Framer Motion**, and **MDX Case Studies**. Designed around modern cyber-teal glassmorphism aesthetics and dark-mode-first engineering principles—rejecting generic corporate templates in favor of a clean, personal, high-density technical presentation.
+Built with **Next.js 15+ App Router**, **TypeScript (Strict Mode)**, **Tailwind CSS**, **shadcn/ui**, **Framer Motion**, and **MDX Case Studies**. Designed around modern cyber-teal glassmorphism aesthetics and dark-mode-first engineering principles.
 
 ---
 
@@ -10,11 +10,11 @@ Built with **Next.js 15+ App Router**, **TypeScript (Strict Mode)**, **Tailwind 
 
 As AI systems move from zero-shot demos to long-horizon production agents, engineering credibility depends on understanding **where systems break and how they recover**. 
 
-This portfolio showcases four core agentic AI architectures:
-1. **LangGraph Multi-Agent Orchestration System**: Hierarchical supervisor-worker agent topology for complex codebase synthesis and audit.
-2. **Autonomous Self-Correcting Code Generation Loop**: Sandbox execution and Reflexion-based AST error patching.
-3. **Persistent-Memory Long-Horizon Agent**: Dual-layer (Episodic + Semantic) memory engine using Qdrant and exponential temporal decay.
-4. **Deterministic Guardrails & Policy Enforcement Proxy**: Sub-15ms schema validation and injection firewall for LLM tool calling.
+This portfolio showcases four core production architectures engineered by Pratham Salotra:
+1. **YouTube Video RAG Assistant**: 500-token semantic window chunking with Llama-3.1-8B-Instruct and bge-small-en-v1.5 embeddings for video Q&A.
+2. **AI-Powered Real-Time Proctoring System**: 30 FPS webcam computer vision (YOLOv8 NANO & MediaPipe Face Mesh) with Flask-to-FastAPI async routing under 100ms.
+3. **Sandesh Suvidha — Real-Time 1-to-1 Messenger**: Socket.io real-time chat with JWT/Bcrypt auth and a MongoDB schema storing 7,000+ chats (35% faster retrieval).
+4. **LangGraph Multi-Agent Orchestration System**: Hierarchical supervisor-worker agent topology for complex codebase synthesis and audit.
 
 ### 🌟 Key Differentiators
 - **"What Broke / Failure Modes Encountered" Section**: Every case study features a dedicated callout section detailing real production failure modes (deadlocks, token exhaustion, memory poisoning, schema hallucinations) and how they were engineered away.
@@ -92,6 +92,22 @@ All content is cleanly decoupled from layout logic and explicitly marked with `P
 - **Case Study Deep-Dives**: Edit or add `.mdx` files inside `/content/case-studies/`
 - **Architecture Diagrams**: Replace `.png` images in `/public/diagrams/`
 - **Resume PDF**: Replace `/public/resume.pdf` with your real downloadable resume
+
+---
+
+## 📧 Email Delivery & Local Configuration (`.env.local`)
+
+The contact form uses **Resend** (`/app/api/contact/route.ts`).
+- **In Development Mode (without API Key)**: The contact form works in simulation mode and prints incoming submissions directly to your terminal console so you can test the UI without sending emails.
+- **To Enable Real Email Delivery**:
+  1. Sign up for a free Resend account at [https://resend.com](https://resend.com).
+  2. Create an API Key (starts with `re_...`).
+  3. Open the `.env.local` file in your project root folder (`c:\Kaam\worthwatching\portfolio\.env.local`) and paste your key:
+     ```env
+     RESEND_API_KEY=re_your_api_key_here
+     CONTACT_RECIPIENT_EMAIL=prathamsalotra@proton.me
+     ```
+  4. Restart your development server (`npm run dev`) and test the contact form!
 
 ---
 

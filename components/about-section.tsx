@@ -65,7 +65,7 @@ export function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-7 space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed"
           >
-            {bioData.aboutParagraphs.map((paragraph, idx) => (
+            {bioData.aboutParagraphs.map((paragraph: string, idx: number) => (
               <p
                 key={idx}
                 className="first:text-foreground first:font-medium first:text-lg sm:first:text-xl"
@@ -74,11 +74,7 @@ export function AboutSection() {
               </p>
             ))}
 
-            {/* Placeholder Marker Note for easy editing */}
-            <div className="p-4 rounded-lg bg-secondary/50 border border-border/80 text-xs font-mono text-muted-foreground">
-              <span className="text-primary font-semibold">💡 Editor Note:</span>{" "}
-              Update this bio in <code className="text-foreground">/data/bio.ts</code> to customize your personal journey and credentials.
-            </div>
+
           </motion.div>
         </div>
       </div>

@@ -84,16 +84,16 @@ export function ContactSection() {
             className="lg:col-span-5 space-y-6"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/20">
-              <span>04. INITIALIZE CONTACT</span>
+              <span>05. INITIALIZE CONTACT</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-              Let&apos;s Build production AI systems.
+              Let&apos;s Build Production AI Systems.
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Interested in discussing autonomous agent architectures, LangGraph evaluation loops, or staff engineering opportunities? Send a message below or email me directly.
+              Interested in discussing Retrieval-Augmented Generation (RAG) pipelines, real-time computer vision latency optimization, or full-stack software engineering opportunities? Send a message below or reach out directly.
             </p>
 
-            {/* Direct Email Card */}
+            {/* Direct Contact Card */}
             <div className="p-5 rounded-2xl glass-panel border border-border/80 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
@@ -112,7 +112,12 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted-foreground">
+              <div className="pt-3 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted-foreground">
+                <span>Phone / Call</span>
+                <span className="text-foreground font-semibold">+91-9682507935</span>
+              </div>
+
+              <div className="pt-3 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted-foreground">
                 <span>Response Time</span>
                 <span className="text-primary">&lt; 24 Hours</span>
               </div>

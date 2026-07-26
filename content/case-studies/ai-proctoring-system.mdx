@@ -1,0 +1,72 @@
+---
+title: "AI-Powered Real-Time Proctoring System"
+description: "An automated online examination proctoring engine capturing 30 FPS webcam streams to detect 5 violation categories via computer vision and unified Flask-to-FastAPI routing."
+date: "2026-03-20"
+tags: ["Computer Vision", "YOLO", "OpenCV", "FastAPI", "Flask", "Real-Time ML"]
+repoUrl: "https://github.com/PrathamSalotra"
+architectureImage: "/diagrams/ai-proctoring-system.png"
+---
+
+## Problem / Goal
+
+Remote online examinations require reliable, non-intrusive supervision to maintain academic integrity. Traditional human proctoring does not scale, while naïve video recording requires labor-intensive manual review after the test concludes.
+
+The goal of this project was to build an **autonomous AI-powered proctoring system** that analyzes 30 FPS live webcam streams in real time, classifies 5 distinct violation behaviors, and flags incidents immediately on an interactive instructor frontend.
+
+---
+
+## Architecture Overview
+
+The system architecture combines edge-compatible computer vision models with a high-throughput unified Python backend routing layer.
+
+![AI-Powered Real-Time Proctoring System Architecture](/diagrams/ai-proctoring-system.png)
+
+### Real-Time Detection Pipeline
+
+1. **Webcam Stream Capture**: Captures 30 frames per second from client browser webcams with WebRTC/OpenCV.
+2. **Multi-Model Violation Detection**:
+   - **Gaze Estimation & Face Mesh**: Tracks eye direction and head pose to detect off-screen looking.
+   - **Multi-Object Detection (YOLO)**: Identifies unauthorized objects (smartphones, books, secondary devices).
+   - **Multiple/Zero Face Flagging**: Detects impersonation or candidate absence.
+3. **Unified Flask-to-FastAPI Routing**: Decouples heavy frame inference from HTTP request handling using asynchronous FastAPI workers.
+4. **Real-Time Incident Dashboard**: Broadcasts violation events and timestamped evidence to the frontend monitoring console.
+
+---
+
+## Tech Stack Used
+
+- **Computer Vision Models**: YOLOv8 NANO, MediaPipe Face Mesh, OpenCV
+- **Backend Routing**: Python FastAPI (async inference), Flask API layer
+- **Frontend Dashboard**: React, Streamlit visualization dashboard
+- **Real-Time Streaming**: WebSockets & HTTP chunked video frames
+- **Performance**: Latency under 250ms per frame detection loop
+
+---
+
+## What Broke / Failure Modes Encountered
+
+<FailureModeAlert title="30 FPS Frame Queue Deadlocking & CV Pipeline Bottleneck" severity="high">
+When processing raw 30 FPS webcam streams at 1080p resolution, synchronous OpenCV inference caused frame queues to back up in the Python GIL (Global Interpreter Lock). This led to video freeze-ups and delayed violation flagging by up to 4.5 seconds during multi-object detection spikes.
+</FailureModeAlert>
+
+### Additional Failure Modes
+- **False-Positive Gaze Alerts**: Candidates naturally glancing at keyboard keys triggered "looking away" violations when gaze thresholds were set too strictly.
+- **Lighting Drift**: Poor room lighting caused standard face detection to drop out, generating false "Candidate Missing" alerts.
+
+---
+
+## How It Was Fixed / Lessons Learned
+
+1. **Async Frame Dropping & Downsampling**:
+   - Implemented an adaptive frame-skipping buffer that processes 10 FPS for deep YOLO inference while rendering smooth 30 FPS video to the UI, reducing CPU latency to **under 100ms**.
+2. **Temporal Hysteresis for Violation Flagging**:
+   - Replaced instantaneous trigger rules with a sliding-window duration threshold: a gaze violation is only flagged if the candidate looks away continuously for **>2.5 seconds**.
+3. **Flask-to-FastAPI Asynchronous Refactoring**:
+   - Migrated synchronous Flask endpoints to FastAPI with `uvicorn` worker pools, achieving end-to-end incident routing latency of **under 250ms**.
+
+---
+
+## Links & Verification
+
+- **GitHub Profile & Code**: [github.com/PrathamSalotra](https://github.com/PrathamSalotra)
+- **LinkedIn**: [linkedin.com/in/PrathamSalotra](https://linkedin.com/in/PrathamSalotra)

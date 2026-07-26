@@ -31,6 +31,8 @@ export interface BioData {
   resumeUrl: string;
 }
 
+export type Bio = BioData;
+
 export interface CaseStudyMetadata {
   title: string;
   description: string;

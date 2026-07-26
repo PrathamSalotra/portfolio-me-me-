@@ -1,27 +1,19 @@
-import { BioData } from "@/lib/types";
+import { Bio } from "@/lib/types";
 
-/**
- * ============================================================================
- * PLACEHOLDER CONTENT MARKER
- * ============================================================================
- * Please update this bio, role, tagline, social URLs, and contact email
- * with your real personal details.
- * ============================================================================
- */
-export const bioData: BioData = {
-  name: "Alex Mercer",
-  role: "AI Systems Engineer",
+export const bioData: Bio = {
+  name: "Pratham Salotra",
+  role: "AI Systems & Full-Stack Engineer",
   tagline:
-    "Building autonomous, self-correcting agent architectures and production-grade LLM infrastructure.",
+    "Building Retrieval-Augmented Generation (RAG) pipelines, real-time computer vision systems, and distributed full-stack applications.",
   intro:
-    "I design deterministic guardrails, multi-agent orchestration systems, and low-latency retrieval engines that bridge research breakthroughs and production reliability.",
+    "Computer Science engineer specializing in Retrieval-Augmented Generation (RAG), computer vision latency optimization, and full-stack distributed architectures. Experienced in cutting data processing latency by 250ms+ and deploying production AI models.",
   aboutParagraphs: [
-    "I'm a senior software engineer specializing in autonomous agent architectures, LLM orchestration, and high-throughput vector retrieval systems. Over the past five years, I've transitioned from distributed systems engineering to designing production AI pipelines that survive real-world failure modes.",
-    "My engineering philosophy is rooted in technical credibility over hype: every LLM application needs rigorous observability, deterministic fallback policies, and verifiable evaluation loops. I build primarily with TypeScript, Python, Next.js, LangGraph, and PostgreSQL/pgvector, focusing on systems where latency, correctness, and auditability matter.",
-    "When I'm not inspecting trace waterfalls in LangSmith or benchmarking vector index recall, I contribute to open-source agent tooling and write technical deep-dives on where autonomous agents break in production.",
+    "I'm a B.Tech. Computer Science undergraduate at Graphic Era Institute of Technology, with a focused concentration in Retrieval-Augmented Generation (RAG) and Applied Software Engineering Principles.",
+    "As a Full-Stack Development Engineering Intern at UniConverge Technologies, I engineered RESTful backend services that reduced data-processing latency by 250ms and provisioned AWS (S3, Lambda) cloud infrastructure. Simultaneously, as a Research Assistant at Graphic Era University, I optimized real-time YOLOv8 NANO and MediaPipe Face Mesh computer vision pipelines to achieve sub-100ms detection latency.",
+    "I am an Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate and a Project & Research Leader passionate about deterministic guardrails, LangGraph orchestration, and building reliable, high-performance web and AI systems.",
   ],
-  email: "alex.mercer.agentic@example.com",
-  githubUrl: "https://github.com",
-  linkedinUrl: "https://linkedin.com",
-  resumeUrl: "/resume.pdf",
+  email: "prathamsalotra@proton.me",
+  githubUrl: "https://github.com/PrathamSalotra",
+  linkedinUrl: "https://linkedin.com/in/PrathamSalotra",
+  resumeUrl: "https://drive.google.com/file/d/1PkRZvAmzJg71NgxaMoT2qyO0Tbghilha/view?usp=drive_link",
 };
