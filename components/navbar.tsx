@@ -32,9 +32,7 @@ export function Navbar() {
           <span className="font-semibold tracking-tight text-foreground sm:text-lg group-hover:text-primary transition-colors">
             {bioData.name}
           </span>
-          <span className="hidden sm:inline-block text-xs font-mono px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
-            agent.ai
-          </span>
+
         </Link>
 
         {/* Desktop Navigation Links */}

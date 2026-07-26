@@ -49,20 +49,4 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/PrathamSalotra",
     hasCaseStudy: true,
   },
-  {
-    slug: "multi-agent-orchestrator",
-    title: "LangGraph Multi-Agent Orchestration System",
-    description:
-      "A hierarchical supervisor-worker agent architecture built with LangGraph that autonomously synthesizes, reviews, and audits codebases with continuous LangSmith observability.",
-    tags: [
-      "LangGraph",
-      "LangChain",
-      "Multi-agent",
-      "LangSmith",
-      "TypeScript",
-      "Python",
-    ],
-    repoUrl: "https://github.com/PrathamSalotra",
-    hasCaseStudy: true,
-  },
 ];

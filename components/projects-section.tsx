@@ -28,7 +28,7 @@ export function ProjectsSection() {
               <span>04. CASE STUDIES & CODE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-              Featured Agentic Systems
+              Featured Projects
             </h2>
             <p className="text-base text-muted-foreground mt-2 max-w-2xl">
               Production architectures engineered for reliability. Each case study documents the goal, architecture, and exact failure modes encountered.
