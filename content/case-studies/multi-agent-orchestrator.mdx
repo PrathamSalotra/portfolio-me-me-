@@ -1,0 +1,74 @@
+---
+title: "LangGraph Multi-Agent Orchestration System"
+description: "A hierarchical supervisor-worker agent architecture built with LangGraph and GPT-4o that autonomously synthesizes, reviews, and tests production codebases with continuous observability."
+date: "2026-06-15"
+tags: ["LangGraph", "LangChain", "Multi-agent", "LangSmith", "TypeScript", "Python"]
+repoUrl: "https://github.com/example/multi-agent-orchestrator"
+demoUrl: "https://orchestrator-demo.example.com"
+architectureImage: "/diagrams/multi-agent-orchestrator.png"
+---
+
+## Problem / Goal
+
+Modern engineering teams spend significant cycles on boilerplate scaffolding, security auditing, and regression test authoring. Single-prompt code generation tools struggle with multi-file refactors because they lack structural state, feedback loops, and specialized focus.
+
+The goal of this project was to engineer an **autonomous multi-agent orchestration system** capable of handling complex software feature requests. By breaking down the task into specialized agent roles managed by a deterministic supervisor, the system achieves higher first-pass compilation rates and enforces zero-trust security reviews before code merge.
+
+---
+
+## Architecture Overview
+
+The system is designed around a **Hierarchical Supervisor-Worker Topology** built on top of **LangGraph** state machines and **GPT-4o**.
+
+![LangGraph Multi-Agent Orchestration System Architecture](/diagrams/multi-agent-orchestrator.png)
+
+### State Graph Flow
+
+1. **Supervisor Node (`Router`)**: Parses user specifications, constructs a shared `ProjectState` subgraph, and routes execution to specialized workers.
+2. **Code Generator Worker (`Synthesizer`)**: Emits strongly-typed TypeScript/Python modules using context-aware RAG over repository interfaces.
+3. **Security Reviewer Worker (`Auditor`)**: Inspects generated ASTs for injection risks, unescaped queries, and OWASP top-10 vulnerabilities.
+4. **Test Execution Worker (`Runner`)**: Spawns isolated Docker containers to execute unit suites against the generated patch.
+
+---
+
+## Tech Stack Used
+
+- **Framework**: LangGraph & LangChain (Python 3.12)
+- **Model Layer**: OpenAI GPT-4o & Claude 3.5 Sonnet (routing/audit)
+- **Observability**: LangSmith for trace waterfalls and token latency profiling
+- **Runtime Sandbox**: Docker SDK for isolated test runner execution
+- **API Interface**: FastAPI with Server-Sent Events (SSE) for streaming agent state
+
+---
+
+## What Broke / Failure Modes Encountered
+
+<FailureModeAlert title="Agent Loop Deadlock & Token Exhaustion" severity="high">
+During initial stress-testing on multi-file repositories, the Supervisor Agent entered an infinite ping-pong loop between the **Synthesizer** and **Auditor** workers.
+
+When the Auditor reported a minor style violation or ambiguous lint warning, the Synthesizer would over-correct by rewriting entire modules, introducing new syntactic bugs that triggered another audit rejection. This recursion consumed up to **180,000 tokens per request** and eventually timed out serverless execution limits.
+</FailureModeAlert>
+
+### Additional Failure Modes
+- **State Bloat**: Passing the full conversational history and full file ASTs in `ProjectState` caused quadratic context window growth.
+- **Hallucinated Import Paths**: Workers frequently referenced internal utility files that existed in pre-training data but not in the local workspace.
+
+---
+
+## How It Was Fixed / Lessons Learned
+
+1. **Bounded Reflexion Budget & Circuit Breakers**:
+   - Implemented a hard limit of `max_retries = 3` per sub-goal in the LangGraph state machine.
+   - If an error is not resolved within 3 cycles, execution halts and escalates to a human-in-the-loop review queue.
+2. **Delta-Only State Updates**:
+   - Refactored `ProjectState` to store unified diffs rather than raw file payloads, reducing average prompt token consumption by **68%**.
+3. **Deterministic Linting Pre-Pass**:
+   - Replaced LLM-based style auditing with deterministic AST linters (ESLint / Ruff) executed inside the worker before LLM review, reserving expensive token budgets for semantic security logic.
+
+---
+
+## Links & Verification
+
+- **GitHub Repository**: [github.com/example/multi-agent-orchestrator](https://github.com/example/multi-agent-orchestrator)
+- **Live Interactive Demo**: [orchestrator-demo.example.com](https://orchestrator-demo.example.com)
+- **LangSmith Public Traces**: [smith.langchain.com/public/example-trace](https://smith.langchain.com)
