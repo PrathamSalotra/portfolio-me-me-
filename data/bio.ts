@@ -2,7 +2,7 @@ import { Bio } from "@/lib/types";
 
 export const bioData: Bio = {
   name: "Pratham Salotra",
-  role: "AI Systems & Full-Stack Engineer",
+  role: "Full Stack & GenAI Engineer",
   tagline:
     "Building Retrieval-Augmented Generation (RAG) pipelines, real-time computer vision systems, and distributed full-stack applications.",
   intro:

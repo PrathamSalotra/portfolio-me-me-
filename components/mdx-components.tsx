@@ -15,17 +15,17 @@ export function FailureModeAlert({
 }: FailureModeAlertProps) {
   const borderClass =
     severity === "critical"
-      ? "border-red-500/50 bg-red-500/5 dark:bg-red-950/20"
+      ? "border-red-500/60 bg-red-50 dark:bg-red-950/25"
       : severity === "high"
-      ? "border-amber-500/50 bg-amber-500/5 dark:bg-amber-950/20"
-      : "border-primary/50 bg-primary/5 dark:bg-primary/10";
+        ? "border-amber-500/60 bg-amber-50 dark:bg-amber-950/25"
+        : "border-primary/60 bg-emerald-50 dark:bg-primary/15";
 
   const textHeaderClass =
     severity === "critical"
-      ? "text-red-600 dark:text-red-400"
+      ? "text-red-700 dark:text-red-400"
       : severity === "high"
-      ? "text-amber-600 dark:text-amber-400"
-      : "text-primary";
+        ? "text-amber-700 dark:text-amber-400"
+        : "text-primary dark:text-primary";
 
   return (
     <div
@@ -43,11 +43,10 @@ export function FailureModeAlert({
           {title}
         </h4>
         <span
-          className={`ml-auto text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border ${
-            severity === "critical"
-              ? "border-red-500/30 text-red-600 dark:text-red-400 bg-red-500/10"
-              : "border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/10"
-          }`}
+          className={`ml-auto text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border ${severity === "critical"
+            ? "border-red-500/40 text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-500/10"
+            : "border-amber-500/40 text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-500/10"
+            }`}
         >
           {severity} failure
         </span>
